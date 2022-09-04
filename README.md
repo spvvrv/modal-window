@@ -1,2 +1,2 @@
-# modal__window
+# modal_window
 Created with CodeSandbox

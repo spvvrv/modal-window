@@ -1,0 +1,342 @@
+* {
+  box-sizing: border-box;
+}
+html,
+body {
+  font-family: Georgia, "Times New Roman", Times, serif;
+  font-size: 20px;
+  margin: 0;
+  padding: 0;
+}
+
+/*container styles start*/
+.container {
+  background-color: #f6f6f6;
+  padding: 40px;
+  text-align: center;
+}
+h1 {
+  font-size: 35px;
+  font-family: "Georgia";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 35px;
+  color: #545454;
+  margin-bottom: 60px;
+  text-align: center;
+}
+.pets__cards {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-row-gap: 20px;
+  grid-column-gap: 20px;
+  margin-bottom: 50px;
+}
+.pets__card {
+  background-color: #fafafa;
+  margin-right: 90px;
+  text-align: center;
+  margin-right: 0px;
+}
+p {
+  font-family: "Georgia";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 23px;
+  color: #656363;
+  letter-spacing: 0.06em;
+}
+/*container styles end*/
+
+/*popup styles start*/
+.popup__bg {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.5);
+  opacity: 0; /*Скрываем фон и сам попап*/
+  pointer-events: none; /*запретили попап окну быть целью для любых событий мыши*/
+  transition: 0.5s all;
+}
+.popup__bg.active {
+  /*при добавлении класса 'active' попап покажется*/
+  opacity: 1;
+  pointer-events: all;
+  transition: 0.5s all;
+}
+.popup {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  top: 50%;
+  left: 50%;
+  background: #fafafa;
+  width: 400px;
+  padding: 25px;
+  transform: translate(-50%, -50%) scale(0);
+  transition: 0.5s all;
+}
+.popup.active {
+  /*Анимация масштабирования когда будет открываться попап*/
+  transform: translate(-50%, -50%) scale(1);
+  transition: 0.5s all;
+}
+.close-popup {
+  position: absolute;
+  right: 10px;
+  top: 10px;
+  width: 35px;
+  height: 35px;
+  cursor: pointer;
+}
+.popup label {
+  width: 100%;
+  margin-bottom: 25px;
+  display: flex;
+  flex-direction: column-reverse;
+}
+.popup .label__text {
+  text-transform: uppercase;
+  font-weight: 500;
+  color: #656363;
+  margin-bottom: 5px;
+}
+.popup input {
+  height: 35px;
+  font-size: 18px;
+  border: none;
+  outline: none;
+  border-bottom: 1px solid #f1cdb3;
+}
+.popup input:focus {
+  border-bottom: 1px solid #de6b19;
+}
+.popup input:focus + .label__text {
+  color: #de6b19;
+}
+.popup select {
+  width: 100%;
+  margin-bottom: 25px;
+  font-size: 20px;
+  text-transform: uppercase;
+  font-weight: 500;
+  color: #656363;
+  height: 35px;
+  font-size: 18px;
+  border: none;
+  outline: none;
+  border-bottom: 1px solid #f1cdb3;
+}
+.popup select:focus {
+  color: #de6b19;
+  border-bottom: 1px solid #de6b19;
+}
+.open-popup {
+  width: 261px;
+  height: 52px;
+  text-transform: uppercase;
+  background: #f1cdb3;
+  color: #fafafa;
+  border-radius: 100px;
+  text-decoration: none;
+  font-weight: 500;
+  border: none;
+}
+.open-popup:hover {
+  background: #fafafa;
+  color: #f1cdb3;
+  transition: 0.5s all;
+}
+.label__button {
+  width: 261px;
+  height: 52px;
+  text-transform: uppercase;
+  background: #f1cdb3;
+  color: #fafafa;
+  border-radius: 100px;
+  text-decoration: none;
+  font-weight: 500;
+  border: none;
+  margin: 0 auto;
+}
+.label__button:hover {
+  background: #fafafa;
+  color: #f1cdb3;
+  transition: 0.5s all;
+}
+
+/*popup styles end*/
+
+/*popup_info-pet styles start*/
+
+.popup__pet-info-body {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: 0.5s all;
+}
+.popup__pet-info-body.active {
+  /*при добавлении класса 'active' попап покажется*/
+  opacity: 1;
+  pointer-events: all;
+  transition: 0.5s all;
+}
+.popup__wrapper {
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  max-width: 900px;
+  height: 552px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  background-color: #fafafa;
+  padding: 35px 35px;
+  transform: translate(-50%, -50%) scale(0);
+  transition: 0.5s all;
+}
+.popup__wrapper.active {
+  /*Анимация масштабирования когда будет открываться попап*/
+  transform: translate(-50%, -50%) scale(1);
+  transition: 0.5s all;
+}
+.popup__title {
+  font-family: "Georgia";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 35px;
+  line-height: 130%;
+  letter-spacing: 0.06em;
+  color: #000000;
+  margin-bottom: 10px;
+}
+.popup__subtitle {
+  font-family: "Georgia";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 115%;
+  letter-spacing: 0.06em;
+  color: #000000;
+  margin-bottom: 40px;
+}
+.popup__text {
+  margin-bottom: 40px;
+}
+.popup__about {
+  position: relative;
+}
+.close-popup-pet {
+  position: absolute;
+  right: 0;
+  width: 35px;
+  height: 35px;
+  cursor: pointer;
+}
+.button__pets-card {
+  width: 187px;
+  height: 52px;
+  border: 2px solid #f1cdb3;
+  border-radius: 100px;
+  margin-bottom: 30px;
+  cursor: pointer;
+  background-color: #fafafa;
+  color: #545454;
+}
+
+/*popup_info-pet styles end*/
+
+/*media screen starts*/
+@media screen and (max-width: 940px) {
+  .pets__cards {
+    grid-template-columns: 1fr 1fr;
+  }
+  .container {
+    align-items: center;
+  }
+  #pet-popup-container {
+    width: 550px;
+    height: 350px;
+    padding: 10px;
+  }
+  img {
+    width: 250px;
+    height: 250px;
+  }
+  .popup__text {
+    font-size: 18px;
+    margin-bottom: 10px;
+  }
+  .popup__information {
+    font-size: 18px;
+  }
+  .popup__subtitle {
+    margin-top: 0;
+    margin-bottom: 10px;
+  }
+  .popup__title {
+    margin-bottom: 10px;
+  }
+}
+@media screen and (max-width: 540px) {
+  .pets__cards {
+    grid-template-columns: 1fr;
+  }
+  #pet-popup-container {
+    width: 300px;
+    height: 200px;
+    padding: 10px;
+  }
+  img {
+    width: 150px;
+    height: 150px;
+  }
+  .popup__text {
+    font-size: 10px;
+    margin-bottom: 15px;
+    margin-bottom: 5px;
+  }
+  .popup__information {
+    font-size: 10px;
+    padding-left: 5px;
+    margin-top: 0;
+  }
+  .popup__subtitle {
+    margin-top: 0;
+    margin-bottom: 10px;
+    font-size: 16px;
+  }
+  .popup__title {
+    margin-top: 0;
+    margin-bottom: 5px;
+    font-size: 22px;
+  }
+  .popup {
+    width: 300px;
+  }
+}
+@media screen and (min-width: 941px) {
+  #pet-popup-container {
+    width: 750px;
+    height: 450px;
+    padding: 10px;
+  }
+  img {
+    width: 350px;
+    height: 350px;
+  }
+}
+/*media screen ends*/
+
+
+/*# sourceMappingURL=/style.e308ff8e.css.map */
